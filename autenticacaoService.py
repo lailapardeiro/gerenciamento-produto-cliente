@@ -12,5 +12,5 @@ class Autenticacao:
       print("Acesso permitido!")
       return True
     else:
-      print("Acesso negado!")
+      print("Acesso negado! Usuário/senha invalido")
       return False
