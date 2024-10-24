@@ -2,6 +2,8 @@ clientes = [
     {"id": 1, "nome": "Leonardo", "cpf": "000000001"},
     {"id": 2, "nome": "Brenda", "cpf": "000000002"},
     {"id": 3, "nome": "Catarina", "cpf": "000000003"}
+    {"id": 4, "nome": "Laila", "cpf": "000000004"}
+
 ]
 
 class Cliente:
