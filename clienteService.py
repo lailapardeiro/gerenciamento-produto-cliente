@@ -1,29 +1,20 @@
-clientes = [
-    {"id": 1, "nome": "Leonardo", "cpf": "000000001"},
-    {"id": 2, "nome": "Brenda", "cpf": "000000002"},
-    {"id": 3, "nome": "Catarina", "cpf": "000000003"}
-    {"id": 4, "nome": "Laila", "cpf": "000000004"}
-
-]
+from api.clientesApiService import ClientesApiService
 
 class Cliente:
     TODOS = "TODOS"
     SAIR = "SAIR"
 
+    def __init__(self):
+        self.clientesApi - ClientesApiService()
+    
+
+    def adicionarCliente(self):
+        self.clientesApi.buscarClientes()
+
     def adicionarCliente(self):
         nome = input("Qual o nome do cliente que deseja adicionar? ")
         cpf = input("Qual o CPF do cliente que deseja adicionar? ")
-        if not nome.strip():
-            print("Erro: O nome do cliente não pode estar vazio.")
-            return
-        if any(char.isdigit() for char in nome):
-            print("Erro: O nome do cliente não deve conter números.")
-            return
-        proximoId = len(clientes) + 1
-        while next((cliente for cliente in clientes if cliente["id"] == proximoId), None) is not None:
-            proximoId += 1
-        clientes.append({"id": proximoId, "nome": nome, "cpf": cpf})
-        print(f"Cliente {nome} foi adicionado à lista de Clientes com o ID {proximoId}")
+        self.clientesApi.adicionarCliente(nome, cpf)
 
     def consultarClientePorId(self, id):
         try:
@@ -74,13 +65,19 @@ class Cliente:
             id = input("Digite o código do cliente que deseja editar ou digite 'Sair' para voltar ao menu: ")
             if id.upper() == "SAIR":
                 break
-            cliente_encontrado = self.consultarClientePorId(id)
+
+            cliente_encontrado = self.clientesApi.consultarCliente(id)
+
             if cliente_encontrado is None:
                 print("Erro: ID não encontrado. Veja a lista de clientes:")
                 self.consultarCliente("todos")
                 continue
+
             print(f"Dados atuais do cliente: {cliente_encontrado['id']} - {cliente_encontrado['nome']}")
+            
             novo_nome = input("Digite o novo nome do cliente: ")
+            novo_cpf = input("Digite o novo nome do cliente: ")
+
             if not novo_nome.strip():
                 print("Erro: O nome do cliente não pode estar vazio.")
                 continue

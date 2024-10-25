@@ -11,9 +11,8 @@ class ClientesApiService:
         response = requests.get(url)
 
         if response.status_code == 200: 
-                users = response.json()
-                print(users)
-                return
+                clientes = response.json()
+                return clientes
         else:
             print('Erro ao acessar a API:', response.status_code)
     # GET com parametro
@@ -27,12 +26,11 @@ class ClientesApiService:
         elif cpf is not None: 
             response = requests.get(f"{url}?cpf={cpf}")
         else:
-            self.buscarCliente()
-            return 
+            return self.buscarCliente()
 
         if response.status_code == 200: 
-                users = response.json()
-                print(users)
+                cliente = response.json()
+                print(cliente)
                 return  
         else:
             print('Erro ao acessar a API:', response.status_code)
